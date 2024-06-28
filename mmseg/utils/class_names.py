@@ -487,6 +487,22 @@ def hsidrive_palette():
             [0, 0, 255], [102, 51, 0], [255, 255, 0], [0, 207, 250],
             [255, 166, 0], [0, 204, 204]]
 
+def rellis_classes():
+    """HSI Drive 2.0 class names for external use."""
+    return [
+        "void", "dirt", "grass", "tree", "pole", "water", "sky", "vehicle", 
+            "object", "asphalt", "building", "log", "person", "fence", "bush", 
+            "concrete", "barrier", "puddle", "mud", "rubble"
+    ]
+
+
+def rellis_palette():
+    """HSI Drive 2.0 palette for external use."""
+    return [[0, 0, 0], [108, 64, 20], [0, 102, 0], [0, 255, 0], [0, 153, 153], 
+            [0, 128, 255], [0, 0, 255], [255, 255, 0], [255, 0, 127], [64, 64, 64], 
+            [255, 0, 0], [102, 0, 0], [204, 153, 255], [102, 0, 204], [255, 153, 204], 
+            [170, 170, 170], [41, 121, 255], [134, 255, 239], [99, 66, 34], [110, 22, 138]]
+
 
 dataset_aliases = {
     'cityscapes': ['cityscapes'],
@@ -510,7 +526,8 @@ dataset_aliases = {
     'hsidrive': [
         'hsidrive', 'HSIDrive', 'HSI-Drive', 'hsidrive20', 'HSIDrive20',
         'HSI-Drive20'
-    ]
+    ],
+    'rellis': ['rellis'],
 }
 
 
