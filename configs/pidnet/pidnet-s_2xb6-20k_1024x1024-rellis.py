@@ -40,7 +40,7 @@ model = dict(
         type='PIDHead',
         in_channels=128,
         channels=128,
-        num_classes=19,
+        num_classes=20,
         norm_cfg=norm_cfg,
         act_cfg=dict(type='ReLU', inplace=True),
         align_corners=True,
