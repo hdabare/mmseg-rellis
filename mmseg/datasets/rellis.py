@@ -17,6 +17,6 @@ class RELLISDataset(BaseSegDataset):
 
     def __init__(self, **kwargs):
         super(RELLISDataset, self).__init__(
-            img_suffix='_orig.jpg',
+            img_suffix='.jpg',
             seg_map_suffix='_orig.png',
             **kwargs)
