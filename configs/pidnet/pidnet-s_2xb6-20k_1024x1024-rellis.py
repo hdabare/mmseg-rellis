@@ -1,5 +1,5 @@
 _base_ = [
-    '../_base_/datasets/rellis.py',
+    '../_base_/datasets/rellis_1024x1024.py',
     '../_base_/default_runtime.py'
 ]
 
@@ -72,7 +72,7 @@ train_pipeline = [
     dict(type='LoadAnnotations'),
     dict(
         type='RandomResize',
-        scale=img_size,
+        scale=(2048, 1024),
         ratio_range=(0.5, 2.0),
         keep_ratio=True),
     dict(type='RandomCrop', crop_size=crop_size, cat_max_ratio=0.75),
