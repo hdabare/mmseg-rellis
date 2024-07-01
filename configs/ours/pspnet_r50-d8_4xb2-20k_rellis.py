@@ -6,6 +6,6 @@ num_classses = 20
 crop_size = (375, 600)
 decode_head = dict(num_classes=num_classses)
 auxiliary_head = dict(num_classes=num_classses)
-data_preprocessor = dict(_delete_=True, size=crop_size)
+data_preprocessor = dict(size=crop_size)
 model = dict(data_preprocessor=data_preprocessor, 
              decode_head=decode_head, auxiliary_head=auxiliary_head)
