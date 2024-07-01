@@ -34,29 +34,43 @@ test_pipeline = [
             dict(type='Collect', keys=['img']),
         ])
 ]
-data = dict(
-    samples_per_gpu=2,
-    workers_per_gpu=2,
-    img_size=crop_size,
-    train=dict(
+
+train_dataloader = dict(
+    batch_size=2,
+    num_workers=2,
+    persistent_workers=True,
+    sampler=dict(type='InfiniteSampler', shuffle=True),
+    dataset=dict(
         type=dataset_type,
         data_root=data_root,
-        img_dir='image',
-        ann_dir='annotation',
-        split='train.txt',
-        pipeline=train_pipeline),
-    val=dict(
+        data_prefix=dict(
+            img_path='image', seg_map_path='annotation'),
+        ann_file='train.txt',
+        pipeline=train_pipeline))
+val_dataloader = dict(
+    batch_size=1,
+    num_workers=4,
+    persistent_workers=True,
+    sampler=dict(type='DefaultSampler', shuffle=False),
+    dataset=dict(
         type=dataset_type,
         data_root=data_root,
-        img_dir='image',
-        ann_dir='annotation',
-        split='val.txt',
-        pipeline=test_pipeline),
-    test=dict(
+        data_prefix=dict(
+            img_path='image', seg_map_path='annotation'),
+        ann_file='val.txt',
+        pipeline=test_pipeline))
+test_dataloader = dict(
+    batch_size=1,
+    num_workers=4,
+    persistent_workers=True,
+    sampler=dict(type='DefaultSampler', shuffle=False),
+    dataset=dict(
         type=dataset_type,
         data_root=data_root,
-        img_dir='image',
-        ann_dir='annotation',
-        split='test.txt',
+        data_prefix=dict(
+            img_path='image', seg_map_path='annotation'),
+        ann_file='test.txt',
         pipeline=test_pipeline))
 
+val_evaluator = dict(type='IoUMetric', iou_metrics=['mIoU'])
+test_evaluator = val_evaluator
