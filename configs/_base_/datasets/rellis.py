@@ -1,6 +1,6 @@
 # dataset settings
 dataset_type = 'RELLISDataset'
-data_root = '../ganav/data/rellis/'
+data_root = '../GANav-offroad/data/rellis/'
 img_norm_cfg = dict(
     mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
 img_size = (1920, 1200)
