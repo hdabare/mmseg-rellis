@@ -14,24 +14,30 @@ train_pipeline = [
     dict(type='PhotoMetricDistortion'),
     dict(type='Normalize', **img_norm_cfg),
     dict(type='Pad', size=crop_size, pad_val=0),
-    dict(type='DefaultFormatBundle'),
-    dict(type='Collect', keys=['img', 'gt_semantic_seg']),
+    dict(type='PackSegInputs')
 ]
 test_pipeline = [
     dict(type='LoadImageFromFile'),
+    dict(type='Resize', scale=(2048, 1024), keep_ratio=True),
+    # add loading annotation after ``Resize`` because ground truth
+    # does not need to do resize data transform
+    dict(type='LoadAnnotations'),
+    dict(type='PackSegInputs')
+]
+img_ratios = [0.5, 0.75, 1.0, 1.25, 1.5, 1.75]
+tta_pipeline = [
+    dict(type='LoadImageFromFile', backend_args=None),
     dict(
-        type='MultiScaleFlipAug',
-        scales=[crop_size],
-        # img_ratios=[0.5, 0.75, 1.0, 1.25, 1.5, 1.75],
-        # img_ratios=[0.5, 0.75, 1.0, 1.25, 1.5, 1.75],
-        flip=False,
+        type='TestTimeAug',
         transforms=[
-            dict(type='Resize', keep_ratio=True),
-            dict(type='RandomFlip'),
-            dict(type='Normalize', **img_norm_cfg),
-            dict(type='Pad', size=crop_size, pad_val=0),
-            dict(type='ImageToTensor', keys=['img']),
-            dict(type='Collect', keys=['img']),
+            [
+                dict(type='Resize', scale_factor=r, keep_ratio=True)
+                for r in img_ratios
+            ],
+            [
+                dict(type='RandomFlip', prob=0., direction='horizontal'),
+                dict(type='RandomFlip', prob=1., direction='horizontal')
+            ], [dict(type='LoadAnnotations')], [dict(type='PackSegInputs')]
         ])
 ]
 
