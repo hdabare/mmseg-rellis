@@ -8,7 +8,7 @@ crop_size = (375, 600)
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations'),
-    dict(type='Resize', scale=img_size, ratio_range=(0.5, 2.0)),
+    dict(type='Resize', scale=img_size, scale_factor=(0.5, 2.0)),
     dict(type='RandomCrop', crop_size=crop_size),
     dict(type='RandomFlip', prob=0.5),
     dict(type='PhotoMetricDistortion'),
