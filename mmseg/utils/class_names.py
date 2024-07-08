@@ -503,6 +503,22 @@ def rellis_palette():
             [255, 0, 0], [102, 0, 0], [204, 153, 255], [102, 0, 204], [255, 153, 204], 
             [170, 170, 170], [41, 121, 255], [134, 255, 239], [99, 66, 34], [110, 22, 138]]
 
+def outback_classes():
+    """HSI Drive 2.0 class names for external use."""
+    return [
+        "BACKGROUND", "grass tree", "pole", "tree", "leaves", "fence net", "log", "grass", 
+            "road sign", "small branch", "gravel", "ground", "horizon", "roots", "sky", 
+            "delineator", "rock"
+    ]
+
+
+def outback_palette():
+    """HSI Drive 2.0 palette for external use."""
+    return [[0, 0, 0], [140, 255, 25], [140, 25, 255], [255, 197, 25], [25, 255, 82], 
+           [25, 82, 255], [255, 25, 197], [255, 111, 25], [226, 255, 25], [54, 255, 25],
+          [25, 255, 168], [25, 168, 255], [54, 25, 255], [226, 25, 255],
+          [255, 25, 111], [255, 68, 25], [255, 154, 25]]
+
 
 dataset_aliases = {
     'cityscapes': ['cityscapes'],
@@ -528,6 +544,7 @@ dataset_aliases = {
         'HSI-Drive20'
     ],
     'rellis': ['rellis'],
+    'outback': ['outback'],
 }
 
 
