@@ -58,7 +58,7 @@ model = dict(
     train_cfg=dict(),
     test_cfg=dict(mode='whole'))
 
-train_dataloader = dict(batch_size=6, num_workers=4)
+train_dataloader = dict(batch_size=2, num_workers=2)
 
 iters = 40000
 # optimizer
