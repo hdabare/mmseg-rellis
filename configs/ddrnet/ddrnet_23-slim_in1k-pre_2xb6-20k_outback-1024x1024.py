@@ -60,7 +60,7 @@ model = dict(
 
 train_dataloader = dict(batch_size=6, num_workers=4)
 
-iters = 40000
+iters = 20000
 # optimizer
 optimizer = dict(type='SGD', lr=0.01, momentum=0.9, weight_decay=0.0005)
 optim_wrapper = dict(type='OptimWrapper', optimizer=optimizer, clip_grad=None)
@@ -77,7 +77,7 @@ param_scheduler = [
 
 # training schedule for 120k
 train_cfg = dict(
-    type='IterBasedTrainLoop', max_iters=iters, val_interval=iters)
+    type='IterBasedTrainLoop', max_iters=iters, val_interval=iters // 10)
 val_cfg = dict(type='ValLoop')
 test_cfg = dict(type='TestLoop')
 default_hooks = dict(
