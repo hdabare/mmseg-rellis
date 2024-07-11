@@ -1,6 +1,6 @@
 # dataset settings
 dataset_type = 'OUTBACKDataset'
-data_root = '../GANav-offroad/data/outback/forest/'
+data_root = '../GANav-offroad/data/outback/'
 crop_size = (1024, 1024)
 train_pipeline = [
     dict(type='LoadImageFromFile'),
